@@ -4,6 +4,16 @@ public class StartElephantScript : MonoBehaviour
 {
     public float speed = 2f; // Adjust the speed as needed
     public bool movingRight = true;
+    public Texture[] textures;
+
+    private void Start()
+    {
+        SkinnedMeshRenderer renderer = GetComponent<SkinnedMeshRenderer>();
+
+        Texture randomTexture = textures[Random.Range(0, textures.Length)];
+
+        renderer.material.mainTexture = randomTexture;
+    }
 
     void Update()
     {

@@ -9,14 +9,21 @@ public class stackAnimalScript : MonoBehaviour
     private bool dropped, placed;
     private Rigidbody rb;
     private GameObject elephant;
+    public Texture[] textures;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.useGravity = false;
-        speed = 1f;
+        speed = 2f;
         dropped = false;
         placed = false;
+
+        SkinnedMeshRenderer renderer = GetComponent<SkinnedMeshRenderer>();
+
+        Texture randomTexture = textures[Random.Range(0, textures.Length)];
+
+        renderer.material.mainTexture = randomTexture;
     }
     void Update()
     {
