@@ -5,6 +5,7 @@ public class StartElephantScript : MonoBehaviour
     public float speed = 2f; // Adjust the speed as needed
     public bool movingRight = true;
     public Texture[] textures;
+    public float distance;
 
     private void Start()
     {
@@ -13,6 +14,7 @@ public class StartElephantScript : MonoBehaviour
         Texture randomTexture = textures[Random.Range(0, textures.Length)];
 
         renderer.material.mainTexture = randomTexture;
+        distance = 4f;
     }
 
     void Update()
@@ -24,7 +26,7 @@ public class StartElephantScript : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, 90f, 0f);
             transform.Translate(Vector3.forward * movement);
 
-            if (transform.position.x >= 4f)
+            if (transform.position.x >= distance)
             {
                 movingRight = false;
             }
@@ -34,7 +36,7 @@ public class StartElephantScript : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, -90f, 0f);
             transform.Translate(Vector3.forward * movement);
 
-            if (transform.position.x <= -4f)
+            if (transform.position.x <= -distance)
             {
                 movingRight = true;
             }

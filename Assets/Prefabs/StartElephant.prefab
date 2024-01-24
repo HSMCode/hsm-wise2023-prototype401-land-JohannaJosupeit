@@ -447,6 +447,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1.5
   movingRight: 1
+  textures:
+  - {fileID: 2800000, guid: cd3f037b14bdc22428ae6c3086fc376b, type: 3}
+  - {fileID: 2800000, guid: f15faaaa81a59e141aa77260b47bff50, type: 3}
+  - {fileID: 2800000, guid: 8e0500c6999982f41ae77123dcdd2709, type: 3}
+  - {fileID: 2800000, guid: 62effb6e0fd269b4492b652027f58ba0, type: 3}
+  - {fileID: 2800000, guid: 244c7e83348887d43a9a41172b96081e, type: 3}
+  - {fileID: 2800000, guid: f43023322449f3642937bc66e6df573f, type: 3}
+  - {fileID: 2800000, guid: 8ea2008f51d04914ea11d2a4ac8ef8fc, type: 3}
+  - {fileID: 2800000, guid: 7296cfc738fa9e144a0084d1b003af9e, type: 3}
 --- !u!65 &1576339364145881092
 BoxCollider:
   m_ObjectHideFlags: 0

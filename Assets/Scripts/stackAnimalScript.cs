@@ -4,20 +4,21 @@ using UnityEngine;
 
 public class stackAnimalScript : MonoBehaviour
 {
-    private float speed = 3f; // Adjust the speed as needed
+    private float speed = 2f;
     private bool movingRight = true;
     private bool dropped, placed;
     private Rigidbody rb;
-    private GameObject elephant;
     public Texture[] textures;
+    private float distance;
 
     private void Start()
     {
+        distance = 5f;
         rb = GetComponent<Rigidbody>();
         rb.useGravity = false;
-        speed = 2f;
         dropped = false;
         placed = false;
+        speed = 1 + spawnerScript.rounds;
 
         SkinnedMeshRenderer renderer = GetComponent<SkinnedMeshRenderer>();
 
@@ -27,13 +28,13 @@ public class stackAnimalScript : MonoBehaviour
     }
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space) && spawnerScript.isAlive)
         {
             rb.useGravity = true;
             dropped = true;
         }
 
-        else if (!dropped)
+        else if (!dropped && spawnerScript.isAlive)
         {
             float movement = speed * Time.deltaTime;
 
@@ -42,7 +43,7 @@ public class stackAnimalScript : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0f, 90f, 0f);
                 transform.Translate(Vector3.forward * movement);
 
-                if (transform.position.x >= 4f)
+                if (transform.position.x >= distance)
                 {
                     movingRight = false;
                 }
@@ -52,20 +53,19 @@ public class stackAnimalScript : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0f, -90f, 0f);
                 transform.Translate(Vector3.forward * movement);
 
-                if (transform.position.x <= -4f)
+                if (transform.position.x <= -distance)
                 {
                     movingRight = true;
                 }
             }
         }
-        
     }
 
     private void OnCollisionEnter(Collision col)
     {
         if(col.gameObject.CompareTag("Ground"))
         {
-            Debug.LogError("GAME OVER");
+            spawnerScript.isAlive = false;
         }
         if(!placed)
         {
