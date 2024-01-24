@@ -14,7 +14,8 @@ public class spawnerScript : MonoBehaviour
     public GameObject background;
     public static int rounds;
     public static bool spawning;
-    private Vector3 camPos;
+    private float camPos;
+    private Vector3 bgScale;
     public static bool isAlive;
     private int score;
     public TextMeshProUGUI scoreText;
@@ -30,20 +31,24 @@ public class spawnerScript : MonoBehaviour
         rounds = 0;
         spawning = true;
         mainCamera.orthographicSize = 5;
+        camPos = 5;
+        bgScale = background.transform.localScale;
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        mainCamera.orthographicSize = Mathf.Lerp(mainCamera.orthographicSize, camPos, 3f * Time.deltaTime);
+        
         if (spawning && isAlive)
         {
             Instantiate(spawnObject, transform.position, Quaternion.identity);
             rounds++;
             distance++;
             spawning = false;
-            background.transform.localScale -= new Vector3(0.3f, 0.3f, 0.3f);
-            mainCamera.orthographicSize += 1f;
+            bgScale -= new Vector3(0.3f, 0.3f, 0.3f);
+            camPos += 1f;
             mainCamera.transform.position += new Vector3(0, 0.7f, 0);
             transform.position += new Vector3(0, 2f, 0);
         }
