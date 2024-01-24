@@ -396,6 +396,7 @@ GameObject:
   - component: {fileID: 8991456803299320062}
   - component: {fileID: 1876520406411730501}
   - component: {fileID: 3405380988834167893}
+  - component: {fileID: 8280091614965582829}
   m_Layer: 0
   m_Name: Elephant
   m_TagString: Untagged
@@ -554,6 +555,27 @@ SkinnedMeshRenderer:
     m_Center: {x: 9.313226e-10, y: -0.0035005556, z: 0.015641775}
     m_Extent: {x: 0.017328221, y: 0.020137943, z: 0.01568671}
   m_DirtyAABB: 0
+--- !u!95 &8280091614965582829
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8970705813650312526}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d55795cbe939960429100d36b630e756, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &9077277658950815048
 GameObject:
   m_ObjectHideFlags: 0

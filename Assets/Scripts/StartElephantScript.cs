@@ -5,41 +5,46 @@ public class StartElephantScript : MonoBehaviour
     public float speed = 2f; // Adjust the speed as needed
     public bool movingRight = true;
     public Texture[] textures;
-    public float distance;
+    private Animator animator;
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
+        animator.SetBool("isStarter", true);
         SkinnedMeshRenderer renderer = GetComponent<SkinnedMeshRenderer>();
 
         Texture randomTexture = textures[Random.Range(0, textures.Length)];
 
         renderer.material.mainTexture = randomTexture;
-        distance = 4f;
     }
 
     void Update()
     {
         float movement = speed * Time.deltaTime;
-
-        if (movingRight)
+        if(spawnerScript.isAlive)
         {
-            transform.rotation = Quaternion.Euler(0f, 90f, 0f);
-            transform.Translate(Vector3.forward * movement);
-
-            if (transform.position.x >= distance)
+            if (movingRight)
             {
-                movingRight = false;
+                transform.rotation = Quaternion.Euler(0f, 90f, 0f);
+                transform.Translate(Vector3.forward * movement);
+
+                if (transform.position.x >= spawnerScript.distance)
+                {
+                    movingRight = false;
+                }
+            }
+            else
+            {
+                transform.rotation = Quaternion.Euler(0f, -90f, 0f);
+                transform.Translate(Vector3.forward * movement);
+
+                if (transform.position.x <= -spawnerScript.distance)
+                {
+                    movingRight = true;
+                }
             }
         }
-        else
-        {
-            transform.rotation = Quaternion.Euler(0f, -90f, 0f);
-            transform.Translate(Vector3.forward * movement);
 
-            if (transform.position.x <= -distance)
-            {
-                movingRight = true;
-            }
-        }
+        
     }
 }

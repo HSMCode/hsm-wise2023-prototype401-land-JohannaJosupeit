@@ -9,11 +9,13 @@ public class stackAnimalScript : MonoBehaviour
     private bool dropped, placed;
     private Rigidbody rb;
     public Texture[] textures;
-    private float distance;
+    
+    private Animator animator;
 
     private void Start()
     {
-        distance = 5f;
+        animator = GetComponent<Animator>();
+        
         rb = GetComponent<Rigidbody>();
         rb.useGravity = false;
         dropped = false;
@@ -43,7 +45,7 @@ public class stackAnimalScript : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0f, 90f, 0f);
                 transform.Translate(Vector3.forward * movement);
 
-                if (transform.position.x >= distance)
+                if (transform.position.x >= spawnerScript.distance)
                 {
                     movingRight = false;
                 }
@@ -53,7 +55,7 @@ public class stackAnimalScript : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0f, -90f, 0f);
                 transform.Translate(Vector3.forward * movement);
 
-                if (transform.position.x <= -distance)
+                if (transform.position.x <= -spawnerScript.distance)
                 {
                     movingRight = true;
                 }
@@ -69,6 +71,7 @@ public class stackAnimalScript : MonoBehaviour
         }
         if(!placed)
         {
+            animator.SetBool("landed", true);
             transform.SetParent(col.transform);
             spawnerScript.spawning = true;
             placed = true;

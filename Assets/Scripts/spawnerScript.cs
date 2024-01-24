@@ -16,11 +16,13 @@ public class spawnerScript : MonoBehaviour
     public static bool isAlive;
     private int score;
     public TextMeshProUGUI scoreText;
-   
+    public static float distance;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        distance = 5f;
         score = 0;
         isAlive = true;
         rounds = 0;
@@ -37,6 +39,7 @@ public class spawnerScript : MonoBehaviour
         {
             Instantiate(spawnObject, transform.position, Quaternion.identity);
             rounds++;
+            distance++;
             spawning = false;
             mainCamera.orthographicSize += 1f;
             mainCamera.transform.position += new Vector3(0, 0.7f, 0);
